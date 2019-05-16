@@ -8,7 +8,6 @@ class categorie {
         $this->description = $description;
         $this->imageUrl= $imageUrl;
         $this->deadline = $deadline;
-
     }
 }
 

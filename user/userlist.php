@@ -20,8 +20,6 @@ foreach($statement->fetchAll() as $val) {
     $user_arr[] = new user($val["id"], $val["nom"], $val["password"], $val["valid"], $val["email"], $val["admin"], $val["budget"], $val["role"], $val["date"]);
 }
 
-
 echo json_encode($user_arr);
-// return $user_arr;
 
 ?>

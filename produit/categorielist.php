@@ -19,8 +19,6 @@ foreach($statement->fetchAll() as $val) {
     $categories_arr[] = new categorie($val["id"], $val["title"], $val["description"], $val["imageUrl"], $val["deadline"]);
 }
 
-
 echo json_encode($categories_arr);
-// return $user_arr;
 
 ?>
