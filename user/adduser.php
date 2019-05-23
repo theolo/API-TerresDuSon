@@ -24,7 +24,7 @@ $data = json_decode(file_get_contents("php://input"));
 $user->nom = $data->nom;
 $user->password = $data->password;
 $user->email = $data->email;
-$user->Role_utilisateur_id = $data->Role_utilisateur_id;
+$user->role = $data->Role_utilisateur_id;
 
 $user->create();
 

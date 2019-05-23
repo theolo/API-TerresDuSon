@@ -31,7 +31,7 @@ function create(){
     $this->nom=htmlspecialchars(strip_tags($this->nom));
     $this->password=htmlspecialchars(strip_tags($this->password));
     $this->email=htmlspecialchars(strip_tags($this->email));
-    $this->role=htmlspecialchars(strip_tags($this->role));
+    // $this->role=htmlspecialchars(strip_tags($this->role));
  
     // bind the values
     $stmt->bindParam(':nom', $this->nom);
