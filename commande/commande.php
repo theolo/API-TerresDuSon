@@ -1,4 +1,5 @@
 <?php
+require '../config/cors.php';
 
 class commande {
     public $id;

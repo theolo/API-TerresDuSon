@@ -19,4 +19,5 @@ class DatabaseService {
         return $this->conn;
     }
 }
+
 ?>

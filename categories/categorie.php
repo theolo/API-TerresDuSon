@@ -1,4 +1,5 @@
 <?php
+require '../config/cors.php';
 
 class categorie {
     public $id, $title, $description, $imageUrl, $deadline;

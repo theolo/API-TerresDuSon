@@ -1,4 +1,5 @@
 <?php
+require '../config/cors.php';
 
 class produit {
     public $id, $produit, $prix, $unit, $stock, $fournisseur, $adresse, $sous_categorie_id;

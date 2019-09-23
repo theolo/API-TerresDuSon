@@ -1,4 +1,5 @@
 <?php
+require '../config/cors.php';
 
 class sousCategorie {
     public $id, $title, $description, $imageUrl, $categorie, $categories_id;
