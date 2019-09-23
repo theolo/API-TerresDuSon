@@ -7,12 +7,12 @@ include_once './categorie.php';
 $databaseService = new DatabaseService();
 $conn = $databaseService->getConnection();
 
-$statement = $conn->prepare("SELECT commande.id_commande 
-                            FROM utilisateur_has_commande 
-                            JOIN commande ON utilisateur_has_commande.commande_id_commande=commande.id_commande 
-                            JOIN utilisateur ON utilisateur_has_commande.utilisateur_id=utilisateur.id 
-                            WHERE commande.statut = 0 
-                            and utilisateur.id=CURRENT_USER"
+$statement = $conn->prepare("SELECT commande.id
+                            FROM link_member_command
+                            JOIN command ON link_member_command.id_command=command.id
+                            JOIN member ON link_member_command.id_member=member.id 
+                            WHERE command.status = 0 
+                            and member.id=CURRENT_USER"
                             );
 $statement->execute();
 $categories_arr = [];

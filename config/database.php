@@ -3,7 +3,7 @@
 class DatabaseService {
 
     private $db_host = "localhost";
-    private $db_name = "tds1";
+    private $db_name = "tds2";
     private $db_user = "root";
     private $db_password = "root";
     public $conn;
