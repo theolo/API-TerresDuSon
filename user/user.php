@@ -18,7 +18,7 @@ class ObjUser{
     
         // insert query
         $query = "INSERT INTO " . $this->table_name . "
-                            SET member_name = :nom,
+                            SET name_member = :nom,
                             pass = :password,
                             email = :email,
                             id_role = :role";
