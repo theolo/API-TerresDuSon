@@ -8,7 +8,7 @@ $databaseService = new DatabaseService();
 $conn = $databaseService->getConnection();
 
 $statement = $conn->prepare("SELECT id, title, description, imageUrl, deadline
-                            FROM categories");
+                            FROM category");
 $statement->execute();
 $categories_arr = [];
 foreach($statement->fetchAll() as $val) {

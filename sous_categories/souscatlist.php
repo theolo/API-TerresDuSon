@@ -7,14 +7,14 @@ include_once './souscat.php';
 $databaseService = new DatabaseService();
 $conn = $databaseService->getConnection();
 
-$statement = $conn->prepare("SELECT sous_categories.id, sous_categories.title, sous_categories.description, sous_categories.imageUrl, categories.title as categorie, sous_categories.categories_id
-                            FROM sous_categories JOIN categories ON
-                            sous_categories.categories_id=categories.id
+$statement = $conn->prepare("SELECT sub_category.id, sub_category.title, sub_category.description, sub_category.imageUrl, category.title as category, sub_category.id_category
+                            FROM sub_category JOIN category ON
+                            sub_category.id_category=category.id
                             ");
 $statement->execute();
 $souscat_arr = [];
 foreach($statement->fetchAll() as $val) {
-    $souscat_arr[] = new sousCategorie($val["id"], $val["title"], $val["description"], $val["imageUrl"], $val["categorie"], $val["categories_id"]);
+    $souscat_arr[] = new sousCategorie($val["id"], $val["title"], $val["description"], $val["imageUrl"], $val["category"], $val["id_category"]);
 }
 
 echo json_encode($souscat_arr);

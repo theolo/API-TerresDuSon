@@ -4,7 +4,7 @@ require '../config/cors.php';
 class ObjUser{
     // database connection and table name
     private $conn;
-    private $table_name = "utilisateur";
+    private $table_name = "member";
 
     // object properties
     public $id, $nom, $password, $valid, $email, $admin, $budget, $role, $date;
@@ -18,10 +18,10 @@ class ObjUser{
     
         // insert query
         $query = "INSERT INTO " . $this->table_name . "
-                            SET nom = :nom,
-                            password = :password,
+                            SET member_name = :nom,
+                            pass = :password,
                             email = :email,
-                            Role_utilisateur_id = :role";
+                            id_role = :role";
     
         // prepare the query
         $stmt = $this->conn->prepare($query);
@@ -53,7 +53,7 @@ class ObjUser{
     function emailExists(){
     
         // query to check if email exists
-        $query = "SELECT id, nom, password, valid, email, admin, budget, Role_utilisateur_id, date_ajout
+        $query = "SELECT id, name_member, pass, valid, email, admin, budget, id_role, creation_date
                 FROM " . $this->table_name . "
                 WHERE email = ?
                 LIMIT 0,1";
@@ -81,14 +81,14 @@ class ObjUser{
     
             // assign values to object properties
             $this->id = $row['id'];
-            $this->nom = $row['nom'];
-            $this->password = $row['password'];
+            $this->nom = $row['name_member'];
+            $this->password = $row['pass'];
             $this->valid = $row['valid'];
             $this->email = $row['email'];
             $this->admin = $row['admin'];
             $this->budget = $row['budget'];
-            $this->role = $row['Role_utilisateur_id'];
-            $this->date = $row['date_ajout'];
+            $this->role = $row['id_role'];
+            $this->date = $row['creation_date'];
             // return true because email exists in the database
             return true;
         }
@@ -99,16 +99,16 @@ class ObjUser{
 
 
     function list() {
-        $statement = $this->conn->prepare("SELECT utilisateur.id, utilisateur.nom as nom, utilisateur.password, utilisateur.valid, utilisateur.email, utilisateur.admin, utilisateur.budget, Role_utilisateur.nom as role, utilisateur.date_ajout as date
-                                FROM utilisateur join Role_utilisateur ON
-                                utilisateur.Role_utilisateur_id=Role_utilisateur.id");
+        $statement = $this->conn->prepare("SELECT member.id, member.name_member as nom, member.pass, member.valid, member.email, member.admin, member.budget, role.name_role as role, member.creation_date as date
+                                FROM member join role ON
+                                member.id_role=role.id");
         $statement->execute();
         $user_arr = [];
         foreach($statement->fetchAll() as $val) {
             $obj = new stdClass;
             $obj->id = $val["id"];
             $obj->nom = $val["nom"];
-            $obj->password = $val["password"];
+            $obj->password = $val["pass"];
             $obj->valid = $val["valid"];
             $obj->email = $val["email"];
             $obj->admin = $val["admin"];
