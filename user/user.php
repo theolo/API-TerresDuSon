@@ -7,7 +7,7 @@ class ObjUser{
     private $table_name = "member";
 
     // object properties
-    public $id, $nom, $password, $valid, $email, $admin, $budget, $role, $date;
+    public $id, $name_member, $pass, $valid, $email, $admin, $budget, $id_role, $date;
     
     public function __construct($conne){
         $this->conn = $conne;
@@ -18,28 +18,28 @@ class ObjUser{
     
         // insert query
         $query = "INSERT INTO " . $this->table_name . "
-                            SET member_name = :nom,
-                            pass = :password,
+                            SET name_member = :name_member,
+                            pass = :pass,
                             email = :email,
-                            id_role = :role";
+                            id_role = :id_role";
     
         // prepare the query
         $stmt = $this->conn->prepare($query);
     
         // sanitize
-        $this->nom=htmlspecialchars(strip_tags($this->nom));
-        $this->password=htmlspecialchars(strip_tags($this->password));
+        $this->name_member=htmlspecialchars(strip_tags($this->name_member));
+        $this->pass=htmlspecialchars(strip_tags($this->pass));
         $this->email=htmlspecialchars(strip_tags($this->email));
         // $this->role=htmlspecialchars(strip_tags($this->role));
     
         // bind the values
-        $stmt->bindParam(':nom', $this->nom);
+        $stmt->bindParam(':name_member', $this->name_member);
         $stmt->bindParam(':email', $this->email);
-        $stmt->bindParam(':role', $this->role);
+        $stmt->bindParam(':id_role', $this->id_role);
     
         // hash the password before saving to database
-        $password_hash = password_hash($this->password, PASSWORD_BCRYPT);
-        $stmt->bindParam(':password', $password_hash);
+        $password_hash = password_hash($this->pass, PASSWORD_BCRYPT);
+        $stmt->bindParam(':pass', $password_hash);
     
         // execute the query, also check if query was successful
         if($stmt->execute()){

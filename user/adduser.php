@@ -2,7 +2,7 @@
 require '../config/cors.php';
 
 include_once '../config/database.php';
-include_once './user.php';
+require './user.php';
 // $nom = '';
 // $password = '';
 // $email = '';
@@ -16,10 +16,10 @@ $user = new ObjUser($conn);
 
 $data = json_decode(file_get_contents("php://input"));
 
-$user->nom = $data->nom;
-$user->password = $data->password;
+$user->name_member = $data->name_member;
+$user->pass = $data->pass;
 $user->email = $data->email;
-$user->role = $data->Role_utilisateur_id;
+$user->id_role = $data->id_role;
 
 // $user->create();
 
@@ -38,9 +38,8 @@ else{
  
     // set response code
     http_response_code(400);
- 
     // display message: unable to create user
-    echo json_encode(array("message" => "Unable to create user."));
+    echo json_encode(array("message" => "Unable to create user.", "user" => $user));
 }
 
 // $table_name = 'utilisateur';
